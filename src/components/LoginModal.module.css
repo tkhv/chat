@@ -1,0 +1,75 @@
+.center {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.handleinputLabel {
+  position: top;
+  text-align: center;
+  padding-bottom: 10px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+
+.roundInputContainer {
+  border-radius: 5px;
+  border: 1px solid #494949;
+  background-color: white; /*FIX THIS */
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center; */
+}
+
+.inputRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.handleInput {
+  padding-top: 5px;
+  padding-right: 2px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  width: 200px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+
+.btnContainer {
+  padding-top: 5px;
+  padding-right: 1px;
+  padding-bottom: 5px;
+  padding-left: 2px;
+  width: 34px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnLogin {
+  width: 30px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: transparent;
+  border: none;
+}
+
+.btnImg {
+  min-width: 100%;
+  min-height: 100%;
+  background-color: transparent;
+  border: none;
+}
