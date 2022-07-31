@@ -2,7 +2,9 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import classes from "./LoginModal.module.css";
+import RoundedContainer from "./ui/RoundedContainer";
 import TextField from "./ui/TextField";
+import BtnSend from "./ui/BtnSend";
 
 function LoginModal(props) {
   const handleRef = useRef();
@@ -24,6 +26,27 @@ function LoginModal(props) {
       <div>
         <div className={classes.handleinputLabel}>Enter your chat handle:</div>
         <form onSubmit={submitHandler}>
+          <RoundedContainer>
+            <div className={classes.handleInput}>
+              <TextField placeholder="Handle" ref={handleRef} />
+            </div>
+            <div className={classes.inputRow}>
+              <div className={classes.handleInput}>
+                <TextField placeholder="Password" ref={passRef} />
+              </div>
+              <BtnSend />
+            </div>
+          </RoundedContainer>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+export default LoginModal;
+
+/*<form onSubmit={submitHandler}>
+          <RoundedContainer></RoundedContainer>
           <div className={classes.roundInputContainer}>
             <div className={classes.handleInput}>
               <TextField placeholder="Handle" ref={handleRef} />
@@ -32,21 +55,6 @@ function LoginModal(props) {
               <div className={classes.handleInput}>
                 <TextField placeholder="Password" ref={passRef} />
               </div>
-              <div className={classes.btnContainer}>
-                <button type="submit" className={classes.btnLogin}>
-                  <img
-                    src="./btnLogin.png"
-                    alt="login button"
-                    className={classes.btnImg}
-                  />
-                </button>
-              </div>
             </div>
           </div>
-        </form>
-      </div>
-    </div>
-  );
-}
-
-export default LoginModal;
+        </form> */

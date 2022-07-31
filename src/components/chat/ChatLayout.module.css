@@ -31,14 +31,6 @@
   border: 3px solid #ff0000;
 }
 
-.messageBar {
-  border-radius: 5px;
-  border: 1px solid #494949;
-  background-color: white; /*FIX THIS */
-  display: flex;
-  align-items: center;
-}
-
 .messageInput {
   padding-top: 5px;
   padding-right: 2px;
@@ -47,34 +39,4 @@
   width: 100%;
   font-family: "Inter", sans-serif;
   font-weight: 400;
-}
-
-.btnContainer {
-  padding-top: 5px;
-  padding-right: 1px;
-  padding-bottom: 5px;
-  padding-left: 2px;
-  width: 34px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.btnSend {
-  width: 30px;
-  height: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  background-color: transparent;
-  border: none;
-}
-
-.btnImg {
-  min-width: 100%;
-  min-height: 100%;
-  background-color: transparent;
-  border: none;
 }

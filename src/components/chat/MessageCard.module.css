@@ -1,0 +1,19 @@
+.container {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: cadetblue;
+}
+
+.metadataRow {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.message {
+  height: auto;
+  width: 100%;
+}

@@ -3,20 +3,19 @@ import { useNavigate } from "react-router-dom";
 
 import classes from "./ChatLayout.module.css";
 import TextField from "../ui/TextField";
+import RoundedContainer from "../ui/RoundedContainer";
+import BtnSend from "../ui/BtnSend";
 
 function ChatLayout() {
-  const handleRef = useRef();
-  const passRef = useRef();
+  const msgRef = useRef();
   const navigate = useNavigate();
 
   function submitHandler(event) {
     event.preventDefault();
     const input = {
-      handle: handleRef.current.value,
-      password: passRef.current.value,
+      handle: msgRef.current.value,
     };
     console.log(input); // POST data
-    navigate("/chat");
   }
 
   return (
@@ -28,20 +27,12 @@ function ChatLayout() {
         <div className={classes.messageDock}></div>
 
         <form onSubmit={submitHandler}>
-          <div className={classes.messageBar}>
+          <RoundedContainer>
             <div className={classes.messageInput}>
-              <TextField placeholder="Send message..." ref={handleRef} />
+              <TextField placeholder="Send message..." ref={msgRef} />
             </div>
-            <div className={classes.btnContainer}>
-              <button type="submit" className={classes.btnSend}>
-                <img
-                  src="./btnLogin.png"
-                  alt="login button"
-                  className={classes.btnImg}
-                />
-              </button>
-            </div>
-          </div>
+            <BtnSend />
+          </RoundedContainer>
         </form>
       </div>
     </div>
