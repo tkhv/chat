@@ -4,8 +4,8 @@ import { forwardRef } from "react";
 const TextField = forwardRef((props, ref) => {
   return (
     <input
-      id="handle"
-      name="handle"
+      id={props.id}
+      name={props.id}
       placeholder={props.placeholder}
       ref={ref}
     />

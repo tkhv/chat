@@ -28,11 +28,11 @@ function LoginModal(props) {
         <form onSubmit={submitHandler}>
           <RoundedContainer>
             <div className={classes.handleInput}>
-              <TextField placeholder="Handle" ref={handleRef} />
+              <TextField placeholder="Handle" id="handle" ref={handleRef} />
             </div>
             <div className={classes.inputRow}>
               <div className={classes.handleInput}>
-                <TextField placeholder="Password" ref={passRef} />
+                <TextField placeholder="Password" id="password" ref={passRef} />
               </div>
               <BtnSend />
             </div>
