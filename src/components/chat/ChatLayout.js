@@ -10,19 +10,20 @@ import { useState } from "react";
 
 function ChatLayout() {
   const msgRef = useRef();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
+  const [messages, setMessages] = useState([]);
 
   function submitHandler(event) {
     event.preventDefault();
     const input = {
+      id: Date.now(),
       handle: "arsa",
       msg: msgRef.current.value,
     };
-    setMessages((updateMessages) => {
-      return [input, ...messages];
+    setMessages((oldMessages) => {
+      return [input, ...oldMessages];
     });
   }
-  const [messages, setMessages] = useState([]);
 
   return (
     <div className={classes.container}>
