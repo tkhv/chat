@@ -12,7 +12,6 @@ function ChatLayout() {
   const msgRef = useRef();
   //const navigate = useNavigate();
   const [messages, setMessages] = useState([]);
-  const [typedMsg, setTypedMsg] = useState([]);
 
   function submitHandler(event) {
     event.preventDefault();
@@ -24,7 +23,7 @@ function ChatLayout() {
     setMessages((oldMessages) => {
       return [input, ...oldMessages];
     });
-    setTypedMsg("");
+    msgRef.current.value = "";
   }
 
   return (
@@ -37,15 +36,7 @@ function ChatLayout() {
         <form onSubmit={submitHandler}>
           <RoundedContainer>
             <div className={classes.messageInput}>
-              <TextField
-                placeholder="Send message..."
-                id="msg"
-                ref={msgRef}
-                onChange={(e) => {
-                  setTypedMsg(e.target.value);
-                }}
-                value={typedMsg}
-              />
+              <TextField placeholder="Send message..." id="msg" ref={msgRef} />
               <BtnSend />
             </div>
           </RoundedContainer>

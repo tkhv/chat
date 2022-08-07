@@ -23,38 +23,22 @@ function LoginModal(props) {
 
   return (
     <div className={classes.center}>
-      <div>
-        <div className={classes.handleinputLabel}>Enter your chat handle:</div>
-        <form onSubmit={submitHandler}>
-          <RoundedContainer>
+      <div className={classes.handleinputLabel}>Enter your chat handle:</div>
+      <form onSubmit={submitHandler}>
+        <RoundedContainer>
+          <div className={classes.handleInput}>
+            <TextField placeholder="Handle" id="handle" ref={handleRef} />
+          </div>
+          <div className={classes.inputRow}>
             <div className={classes.handleInput}>
-              <TextField placeholder="Handle" id="handle" ref={handleRef} />
+              <TextField placeholder="Password" id="password" ref={passRef} />
             </div>
-            <div className={classes.inputRow}>
-              <div className={classes.handleInput}>
-                <TextField placeholder="Password" id="password" ref={passRef} />
-              </div>
-              <BtnSend />
-            </div>
-          </RoundedContainer>
-        </form>
-      </div>
+            <BtnSend />
+          </div>
+        </RoundedContainer>
+      </form>
     </div>
   );
 }
 
 export default LoginModal;
-
-/*<form onSubmit={submitHandler}>
-          <RoundedContainer></RoundedContainer>
-          <div className={classes.roundInputContainer}>
-            <div className={classes.handleInput}>
-              <TextField placeholder="Handle" ref={handleRef} />
-            </div>
-            <div className={classes.inputRow}>
-              <div className={classes.handleInput}>
-                <TextField placeholder="Password" ref={passRef} />
-              </div>
-            </div>
-          </div>
-        </form> */
