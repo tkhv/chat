@@ -36,8 +36,8 @@ function ChatLayout() {
           <RoundedContainer>
             <div className={classes.messageInput}>
               <TextField placeholder="Send message..." id="msg" ref={msgRef} />
+              <BtnSend />
             </div>
-            <BtnSend />
           </RoundedContainer>
         </form>
       </div>

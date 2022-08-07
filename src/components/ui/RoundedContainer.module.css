@@ -3,5 +3,6 @@
   border: 1px solid #494949;
   background-color: white;
   display: flex;
-  align-items: center;
+  align-items: left;
+  flex-direction: column;
 }
