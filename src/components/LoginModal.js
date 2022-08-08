@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 
 import classes from "./LoginModal.module.css";
@@ -6,17 +6,29 @@ import RoundedContainer from "./ui/RoundedContainer";
 import TextField from "./ui/TextField";
 import BtnSend from "./ui/BtnSend";
 
-function LoginModal(props) {
+const loginStateReducer = (state, action) => {
+  let update = { ...state };
+  if (action.type === "HANDLE_INPUT") update.enteredHandle = action.handleValue;
+  if (action.type === "PWD_INPUT") update.enteredPwd = action.pwdValue;
+  update.disableBtn =
+    update.enteredHandle.length === 0 || update.enteredPwd.length === 0;
+  return update;
+};
+
+function LoginModal() {
   const handleRef = useRef();
   const passRef = useRef();
   const navigate = useNavigate();
-  const [enteredHandle, changeEnteredHandle] = useState("");
-  const [enteredPwd, changeEnteredPwd] = useState("");
-  const [disableBtn, setDisableBtn] = useState(true);
+
+  const [loginState, dispatch] = useReducer(loginStateReducer, {
+    enteredHandle: "",
+    enteredPwd: "",
+    disableBtn: true,
+  });
 
   function submitHandler(event) {
     event.preventDefault();
-    if (!disableBtn) {
+    if (!loginState.disableBtn) {
       const input = {
         handle: handleRef.current.value,
         password: passRef.current.value,
@@ -25,12 +37,6 @@ function LoginModal(props) {
       navigate("/chat");
     }
   }
-
-  useEffect(() => {
-    enteredHandle.length > 0 && enteredPwd.length > 0
-      ? setDisableBtn(false)
-      : setDisableBtn(true);
-  }, [enteredHandle, enteredPwd]);
 
   return (
     <div className={classes.center}>
@@ -43,7 +49,7 @@ function LoginModal(props) {
               id="handle"
               ref={handleRef}
               onChange={(e) => {
-                changeEnteredHandle(e.target.value);
+                dispatch({ type: "HANDLE_INPUT", handleValue: e.target.value });
               }}
             />
           </div>
@@ -54,11 +60,11 @@ function LoginModal(props) {
                 id="password"
                 ref={passRef}
                 onChange={(e) => {
-                  changeEnteredPwd(e.target.value);
+                  dispatch({ type: "PWD_INPUT", pwdValue: e.target.value });
                 }}
               />
             </div>
-            <BtnSend disabled={disableBtn} />
+            <BtnSend disabled={loginState.disableBtn} />
           </div>
         </RoundedContainer>
       </form>
