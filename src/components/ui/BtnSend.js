@@ -1,9 +1,21 @@
 import classes from "./BtnSend.module.css";
 
 function Card(props) {
+  let clickable;
+  if (!props.disabled) {
+    clickable = {
+      cursor: "pointer",
+    };
+  }
+
   return (
     <div className={classes.btnContainer}>
-      <button type="submit" className={classes.btnLogin}>
+      <button
+        type="submit"
+        className={classes.btnLogin}
+        disabled={props.disabled}
+        style={clickable}
+      >
         <img
           src="./btnLogin.png"
           alt="login button"

@@ -8,6 +8,8 @@ const TextField = forwardRef((props, ref) => {
       name={props.id}
       placeholder={props.placeholder}
       ref={ref}
+      onChange={props.onChange}
+      value={props.value}
     />
   );
 });
