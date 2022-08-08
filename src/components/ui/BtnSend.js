@@ -1,6 +1,6 @@
 import classes from "./BtnSend.module.css";
 
-function Card(props) {
+function BtnSend(props) {
   let clickable;
   if (!props.disabled) {
     clickable = {
@@ -26,4 +26,4 @@ function Card(props) {
   );
 }
 
-export default Card;
+export default BtnSend;

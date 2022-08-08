@@ -4,6 +4,7 @@ import { useState } from "react";
 import classes from "./ChatLayout.module.css";
 import MessageBar from "./MessageBar";
 import MessageDock from "./MessageDock";
+import Sidebar from "./Sidebar";
 
 function ChatLayout(props) {
   const [messages, updateMessages] = useState([]);
@@ -18,9 +19,7 @@ function ChatLayout(props) {
 
   return (
     <div className={classes.container}>
-      <div className={classes.sidebar}>
-        <div className={classes.userCard}></div>
-      </div>
+      <Sidebar />
       <div className={classes.chatWindow}>
         <MessageDock messages={messages} />
         <MessageBar sendHandler={sendHandler} />
