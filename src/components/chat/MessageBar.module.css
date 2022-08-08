@@ -1,0 +1,10 @@
+.messageInput {
+  padding-top: 5px;
+  padding-right: 2px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  width: 100%;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  display: flex;
+}

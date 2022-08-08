@@ -1,5 +1,4 @@
 import { useRef, useReducer } from "react";
-import { useNavigate } from "react-router-dom";
 
 import classes from "./LoginModal.module.css";
 import RoundedContainer from "./ui/RoundedContainer";
@@ -15,12 +14,11 @@ const loginStateReducer = (state, action) => {
   return update;
 };
 
-// TODO: fix button rendering on every loginState change instead of only on loginState.disableBtn change
+// TODO: fix rendering on every loginState change instead of only on loginState.disableBtn change
 
-function LoginModal() {
+function LoginModal(props) {
   const handleRef = useRef();
   const passRef = useRef();
-  const navigate = useNavigate();
 
   const [loginState, dispatch] = useReducer(loginStateReducer, {
     enteredHandle: "",
@@ -28,22 +26,21 @@ function LoginModal() {
     disableBtn: true,
   });
 
-  function submitHandler(event) {
+  function formValidation(event) {
     event.preventDefault();
     if (!loginState.disableBtn) {
       const input = {
         handle: handleRef.current.value,
         password: passRef.current.value,
       };
-      console.log(input); // POST data
-      navigate("/chat");
+      props.loginHandler(input);
     }
   }
 
   return (
     <div className={classes.center}>
       <div className={classes.handleinputLabel}>Enter your chat handle:</div>
-      <form onSubmit={submitHandler}>
+      <form onSubmit={formValidation}>
         <RoundedContainer>
           <div className={classes.handleInput}>
             <TextField
