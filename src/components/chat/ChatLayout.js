@@ -18,6 +18,8 @@ const msgStateReducer = (state, action) => {
   return update;
 };
 
+// TODO: fix button rendering on every msgState change instead of only on msgState.disableBtn change
+
 function ChatLayout() {
   const msgRef = useRef();
   const [disableBtn, setDisableBtn] = useState(true);
@@ -31,8 +33,7 @@ function ChatLayout() {
   const { disableBtn: btn } = msgState;
 
   useEffect(() => {
-    btn ? setDisableBtn(false) : setDisableBtn(true);
-    console.log("CHECK");
+    setDisableBtn(btn);
   }, [btn]);
 
   function submitHandler(event) {

@@ -15,6 +15,8 @@ const loginStateReducer = (state, action) => {
   return update;
 };
 
+// TODO: fix button rendering on every loginState change instead of only on loginState.disableBtn change
+
 function LoginModal() {
   const handleRef = useRef();
   const passRef = useRef();
