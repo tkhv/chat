@@ -7,22 +7,15 @@ import MessageDock from "./MessageDock";
 import Sidebar from "./Sidebar";
 
 function ChatLayout(props) {
-  const [messages, updateMessages] = useState([]);
-
-  function sendHandler(pendingMessage) {
-    if (props.sendHandler(pendingMessage)) {
-      updateMessages((messages) => {
-        return [pendingMessage, ...messages];
-      });
-    }
-  }
-
   return (
     <div className={classes.container}>
       <Sidebar />
       <div className={classes.chatWindow}>
-        <MessageDock messages={messages} />
-        <MessageBar sendHandler={sendHandler} />
+        <MessageDock
+          messages={props.messages}
+          msgDeleteHandler={props.msgDeleteHandler}
+        />
+        <MessageBar sendHandler={props.sendHandler} />
       </div>
     </div>
   );

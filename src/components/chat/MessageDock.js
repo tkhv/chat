@@ -10,6 +10,7 @@ function MessageDock(props) {
           msg={message.msg}
           key={message.id}
           time={message.id}
+          msgDeleteHandler={props.msgDeleteHandler}
         />
       ))}
     </div>
