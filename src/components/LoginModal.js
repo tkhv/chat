@@ -19,10 +19,6 @@ const loginStateReducer = (state, action) => {
 function LoginModal(props) {
   const handleRef = useRef();
   const passRef = useRef();
-  let title;
-
-  if (props.login) title = "Enter your handle:";
-  else title = "Sign up:";
 
   const [loginState, dispatch] = useReducer(loginStateReducer, {
     enteredHandle: "",
@@ -37,14 +33,14 @@ function LoginModal(props) {
         handle: handleRef.current.value,
         password: passRef.current.value,
       };
-      if (props.login) props.loginHandler(input);
-      else props.signupHandler(input);
+      console.log("HERE");
+      props.submitHandler(input);
     }
   }
 
   return (
     <div className={classes.center}>
-      <div className={classes.handleinputLabel}>{title}</div>
+      <div className={classes.handleinputLabel}>{props.label}</div>
       <form onSubmit={formValidation}>
         <RoundedContainer>
           <div className={classes.handleInput}>
