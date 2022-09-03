@@ -1,0 +1,20 @@
+version: "3.3"
+services:
+  nginx:
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "80:80"
+  client:
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    container_name: client
+  server:
+    build:
+      dockerfile: Dockerfile
+      context: ./server
+    container_name: server
+    env_file:
+      - server/env/server.env

@@ -1,0 +1,33 @@
+{
+  "AWSEBDockerrunVersion": "3",
+  "containerDefinitions": [
+    {
+      "name": "nginx",
+      "image": "363473697979.dkr.ecr.us-east-2.amazonaws.com/chat-nginx:latest",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": ["client", "server"],
+      "memory": 100
+    },
+    {
+      "name": "client",
+      "image": "363473697979.dkr.ecr.us-east-2.amazonaws.com/chat-client:latest",
+      "hostname": "client",
+      "essential": false,
+      "memory": 300
+    },
+    {
+      "name": "server",
+      "image": "363473697979.dkr.ecr.us-east-2.amazonaws.com/chat-server:latest",
+      "hostname": "server",
+      "essential": false,
+      "memory": 300
+    }
+  ]
+}

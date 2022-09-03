@@ -8,9 +8,12 @@ import LoginModal from "../components/LoginModal";
 function LoginPage() {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
+
+  if (!authCtx.isLoggedIn) navigate("/");
+
   const [loginMode, setLoginMode] = useState(true);
 
-  const label = loginMode ? "Enter your handle:" : "Sign up:";
+  const label = loginMode ? "Enter your handle: " : "Sign up: ";
 
   function submitHandler(input) {
     loginMode ? loginHandler(input) : signupHandler(input);
@@ -18,7 +21,7 @@ function LoginPage() {
 
   const loginHandler = async (input) => {
     try {
-      const res = await fetch("http://192.168.1.16:8080/login", {
+      const res = await fetch("http://localhost:3001/api/login/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -36,7 +39,7 @@ function LoginPage() {
     authCtx.isLoggedIn = true;
     authCtx.handle = input.handle;
     console.log(authCtx);
-    navigate("/chat");
+    navigate("/chatview");
   };
 
   const signupHandler = async (input) => {
