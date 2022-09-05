@@ -1,3 +1,3 @@
-Server - Contains RESTful Node.js server
+Server - Contains Node.js server
 
 Client - Contains React webapp
