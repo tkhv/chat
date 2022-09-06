@@ -1,44 +1,33 @@
-import { useContext, useState } from "react";
+import { useEffect, useState } from "react";
 
 import ChatLayout from "../components/chat/ChatLayout";
-import AuthContext from "../context/auth-context";
 
 function ChatPage() {
+  useEffect(() => {
+    loadMsgs();
+  });
+
   const [messages, updateMessages] = useState([]);
 
-  const authCtx = useContext(AuthContext);
-  function sendHandler(pendingMessage) {
-    if (authCtx.isLoggedIn) {
-      pendingMessage.handle = authCtx.handle;
-      pendingMessage.key = Date.now();
-      updateMessages((messages) => {
-        return [pendingMessage, ...messages];
+  const loadMsgs = async () => {
+    try {
+      const res = await fetch("http://localhost:3001/api/chat", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
-    }
-  }
-
-  function msgDeleteHandler(messageId) {
-    // TODO: Fix message deletion
-    console.log(messages);
-    if (authCtx.isLoggedIn) {
-      console.log(messageId);
-      const messageIndex = messages.findIndex(
-        (message) => message.time === messageId
-      );
-      updateMessages((messages) => {
-        return messages.splice(messageIndex, 1);
+      let response = await res.json();
+      console.log(response.messageList);
+      updateMessages(() => {
+        return response.messageList;
       });
+    } catch (err) {
+      console.log(err);
     }
-    console.log(messages);
-  }
+  };
 
-  return (
-    <ChatLayout
-      sendHandler={sendHandler}
-      msgDeleteHandler={msgDeleteHandler}
-      messages={messages}
-    />
-  );
+  return <ChatLayout messages={messages} />;
 }
 
 export default ChatPage;
