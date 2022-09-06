@@ -60,7 +60,7 @@ exports.getDM = async (req, res, next) => {
             { _id: targetUser._id },
             {
               $push: {
-                contacts: { userID: originUser.username, dmID: dmID._id },
+                contacts: { username: originUser.username, dmID: dmID._id },
               },
             }
           );
@@ -74,7 +74,7 @@ exports.getDM = async (req, res, next) => {
             { _id: req.body.originID },
             {
               $push: {
-                contacts: { userID: targetUser.username, dmID: dmID._id },
+                contacts: { username: targetUser.username, dmID: dmID._id },
               },
             }
           );
