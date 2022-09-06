@@ -11,11 +11,7 @@ const messageSchema = new schema({
     type: String, //TODO: Change type to ObjectID
     required: true,
   },
-  sendTime: {
-    type: Date,
-    required: true,
-  },
-  recTime: {
+  time: {
     type: Date,
     required: true,
   },

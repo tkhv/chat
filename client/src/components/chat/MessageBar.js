@@ -31,10 +31,7 @@ function MessageBar(props) {
   function formValidate(event) {
     event.preventDefault();
     if (!msgState.disableBtn) {
-      props.sendHandler({
-        id: Date.now(),
-        msg: msgRef.current.value,
-      });
+      props.sendHandler(msgRef.current.value);
       dispatch("");
     }
   }

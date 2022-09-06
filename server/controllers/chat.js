@@ -5,8 +5,10 @@ exports.postMessage = async (req, res, next) => {
     return res.send({ added: false });
   }
   try {
-    if (await Messages.create(req.body)) {
-      res.json({ added: true });
+    req.body.time = new Date(new Date().toUTCString());
+    response = await Messages.create(req.body);
+    if (response) {
+      res.json(response);
     } else res.json({ added: false });
   } catch (err) {
     console.log(err);

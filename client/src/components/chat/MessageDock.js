@@ -6,10 +6,10 @@ function MessageDock(props) {
     <div className={classes.messageDock}>
       {props.messages.map((message) => (
         <MessageCard
-          handle={message.handle}
-          msg={message.msg}
-          key={message.id}
-          time={message.id}
+          handle={message.userID}
+          msg={message.content}
+          key={message._id}
+          time={message.time}
           msgDeleteHandler={props.msgDeleteHandler}
         />
       ))}
