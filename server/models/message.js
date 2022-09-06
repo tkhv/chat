@@ -7,19 +7,19 @@ const messageSchema = new schema({
     type: String,
     required: true,
   },
-  // userID: {
-  //   type: String, //TODO: Change type to ObjectID
-  //   required: true,
-  // },
-  // sendTime: {
-  //   type: Date,
-  //   required: true,
-  // },
-  // recTime: {
-  //   type: Date,
-  //   required: true,
-  // // },
-  // reactions: {
+  userID: {
+    type: String, //TODO: Change type to ObjectID
+    required: true,
+  },
+  sendTime: {
+    type: Date,
+    required: true,
+  },
+  recTime: {
+    type: Date,
+    required: true,
+  },
+  // reactions: {     TODO: Add reaction functionality
   //   type: [],
   //   required: false,
   // },

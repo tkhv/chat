@@ -1,6 +1,3 @@
-import { useState } from "react";
-//import { useNavigate } from "react-router-dom";
-
 import classes from "./ChatLayout.module.css";
 import MessageBar from "./MessageBar";
 import MessageDock from "./MessageDock";

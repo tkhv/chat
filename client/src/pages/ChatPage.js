@@ -1,10 +1,32 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 
 import ChatLayout from "../components/chat/ChatLayout";
 import AuthContext from "../context/auth-context";
 
 function ChatPage() {
   const [messages, updateMessages] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadMessages();
+  }, []);
+
+  const loadMessages = async () => {
+    try {
+      const res = await fetch("http://localhost:3001/api/chat/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      let response = await res.json();
+      console.log(response.messageList);
+      updateMessages(response.messageList);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const authCtx = useContext(AuthContext);
   function sendHandler(pendingMessage) {
@@ -30,6 +52,10 @@ function ChatPage() {
       });
     }
     console.log(messages);
+  }
+
+  if (isLoading) {
+    return <div></div>;
   }
 
   return (
