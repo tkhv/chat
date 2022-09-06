@@ -12,7 +12,10 @@ function ChatLayout(props) {
           messages={props.messages}
           msgDeleteHandler={props.msgDeleteHandler}
         />
-        <MessageBar sendHandler={props.sendHandler} />
+        <MessageBar
+          sendHandler={props.sendHandler}
+          placeholder="Send message..."
+        />
       </div>
     </div>
   );

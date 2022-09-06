@@ -41,7 +41,7 @@ function MessageBar(props) {
       <RoundedContainer>
         <div className={classes.messageInput}>
           <TextField
-            placeholder="Send message..."
+            placeholder={props.placeholder}
             id="msg"
             ref={msgRef}
             value={msgState.enteredMsg}

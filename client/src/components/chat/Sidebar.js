@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import classes from "./Sidebar.module.css";
 import UserCard from "./UserCard";
 import AuthContext from "../../context/auth-context.js";
+import Contacts from "./Contacts";
 
 function Sidebar() {
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ function Sidebar() {
           navigate("/");
         }}
       />
+      <Contacts />
     </div>
   );
 }

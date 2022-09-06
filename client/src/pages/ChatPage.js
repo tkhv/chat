@@ -53,36 +53,6 @@ function ChatPage() {
     }
   };
 
-  // OG:
-  // pendingMessage.handle = authCtx.handle;
-  //         pendingMessage.key = Date.now();
-  //         updateMessages((messages) => {
-  //           return [pendingMessage, ...messages];
-  //         });
-
-  // const loginHandler = async (input) => {
-  //   try {
-  //     const res = await fetch("http://localhost:3001/api/login/", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         username: input.handle,
-  //         password: input.password,
-  //       }),
-  //     });
-  //     console.log(await res.json());
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-
-  //   authCtx.isLoggedIn = true;
-  //   authCtx.handle = input.handle;
-  //   console.log(authCtx);
-  //   navigate("/chatview");
-  // };
-
   function msgDeleteHandler(messageId) {
     // TODO: Fix message deletion
     console.log(messages);
