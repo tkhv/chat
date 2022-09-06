@@ -10,6 +10,22 @@ import AuthContext from "../../context/auth-context";
 function ChatLayout(props) {
   const [messages, updateMessages] = useState([]);
 
+  const loadMessages = async () => {
+    try {
+      const res = await fetch("http://http://localhost:3001/api/chat", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      let response = await res.json();
+      console.log(response.messageList);
+      return response.messageList;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const authCtx = useContext(AuthContext);
   function sendHandler(pendingMessage) {
     if (authCtx.isLoggedIn) {
@@ -20,27 +36,12 @@ function ChatLayout(props) {
       });
     }
   }
-  console.log(props.messages);
-  function msgDeleteHandler(messageId) {
-    // TODO: Fix message deletion
-    console.log(messages);
-    if (authCtx.isLoggedIn) {
-      console.log(messageId);
-      const messageIndex = messages.findIndex(
-        (message) => message.time === messageId
-      );
-      updateMessages((messages) => {
-        return messages.splice(messageIndex, 1);
-      });
-    }
-    console.log(messages);
-  }
 
   return (
     <div className={classes.container}>
       <Sidebar />
       <div className={classes.chatWindow}>
-        <MessageDock messages={[]} msgDeleteHandler={msgDeleteHandler} />
+        <MessageDock messages={messages} loadMessages={loadMessages} />
         <MessageBar sendHandler={sendHandler} />
       </div>
     </div>
