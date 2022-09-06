@@ -26,6 +26,7 @@ exports.login = async (req, res, next) => {
           found: true,
           token: token,
           userID: user._id,
+          contacts: user.contacts,
         });
       } else {
         res.json({

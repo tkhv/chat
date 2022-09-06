@@ -13,11 +13,7 @@ const userSchema = new schema({
     required: true,
   },
   contacts: {
-    type: [
-      {
-        type: String,
-      },
-    ],
+    type: Array,
     required: false,
   },
 });

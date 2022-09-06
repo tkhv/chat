@@ -50,14 +50,40 @@ exports.getDM = async (req, res, next) => {
   }
   try {
     targetUser = await Users.findOne({ username: req.body.username });
+    originUser = await Users.findOne({ _id: req.body.originID });
     if (targetUser._id) {
-      dmID = await Dms.findOne({ dmID: targetUser._id + req.body.originID });
-      if (dmID) {
-        res.json(dmID);
-      } else {
-        dmID = await Dms.create({ dmID: targetUser._id + req.body.originID });
-        res.json(dmID);
+      dmID = await Dms.findOne({ dmID: targetUser._id + originUser._id });
+      if (!dmID) {
+        dmID = await Dms.create({ dmID: targetUser._id + originUser._id });
+        try {
+          target1 = await Users.findOneAndUpdate(
+            { _id: targetUser._id },
+            {
+              $push: {
+                contacts: { userID: originUser.username, dmID: dmID._id },
+              },
+            }
+          );
+        } catch (err) {
+          console.log(err);
+          res.send({ added: false });
+        }
+
+        try {
+          target2 = await Users.findOneAndUpdate(
+            { _id: req.body.originID },
+            {
+              $push: {
+                contacts: { userID: targetUser.username, dmID: dmID._id },
+              },
+            }
+          );
+        } catch (err) {
+          console.log(err);
+          res.send({ added: false });
+        }
       }
+      res.json(dmID);
     }
   } catch (err) {
     console.log(err);
