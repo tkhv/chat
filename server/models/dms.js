@@ -7,6 +7,18 @@ const messageSchema = new schema({
     type: String,
     required: true,
   },
+  userID: {
+    type: String, //TODO: Change type to ObjectID
+    required: true,
+  },
+  time: {
+    type: Date,
+    required: true,
+  },
+  // reactions: {     TODO: Add reaction functionality
+  //   type: [],
+  //   required: false,
+  // },
 });
 
 const dmSchema = new schema({

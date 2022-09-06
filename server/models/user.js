@@ -12,6 +12,14 @@ const userSchema = new schema({
     type: String,
     required: true,
   },
+  contacts: {
+    type: [
+      {
+        type: String,
+      },
+    ],
+    required: false,
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);
