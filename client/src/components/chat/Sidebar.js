@@ -6,7 +6,7 @@ import UserCard from "./UserCard";
 import AuthContext from "../../context/auth-context.js";
 import Contacts from "./Contacts";
 
-function Sidebar() {
+function Sidebar(props) {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
   return (
@@ -18,7 +18,7 @@ function Sidebar() {
           navigate("/");
         }}
       />
-      <Contacts />
+      <Contacts msgUpdateHandler={props.msgUpdateHandler} />
     </div>
   );
 }

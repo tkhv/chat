@@ -31,15 +31,17 @@ function LoginPage() {
           password: input.password,
         }),
       });
-      console.log(await res.json());
+      let response = await res.json();
+      if (response.contacts) {
+        authCtx.isLoggedIn = true;
+        authCtx.handle = input.handle;
+        authCtx.userID = response.userID;
+        authCtx.contacts = response.contacts;
+        navigate("/chatview");
+      }
     } catch (err) {
       console.log(err);
     }
-
-    authCtx.isLoggedIn = true;
-    authCtx.handle = input.handle;
-    console.log(authCtx);
-    navigate("/chatview");
   };
 
   const signupHandler = async (input) => {

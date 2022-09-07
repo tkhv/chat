@@ -4,42 +4,31 @@ import ChatLayout from "../components/chat/ChatLayout";
 import AuthContext from "../context/auth-context";
 
 function ChatPage() {
+  const authCtx = useContext(AuthContext);
   const [messages, updateMessages] = useState([]);
+
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    loadMessages();
+    loadContacts();
   }, []);
 
-  const loadMessages = async () => {
-    try {
-      const res = await fetch("http://localhost:3001/api/chat/", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      let response = await res.json();
-      console.log(response.messageList);
-      updateMessages(response.messageList);
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
+  const loadContacts = async () => {
+    setLoading(false);
   };
 
-  const authCtx = useContext(AuthContext);
   const sendHandler = async (pendingMessage) => {
     if (authCtx.isLoggedIn) {
       try {
-        const res = await fetch("http://localhost:3001/api/chat/", {
+        const res = await fetch("http://localhost:3001/api/chat/sendMsg", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            userID: authCtx.handle,
+            dmID: authCtx.activeDM,
             content: pendingMessage,
+            username: authCtx.handle,
           }),
         });
         let response = await res.json();
@@ -50,6 +39,14 @@ function ChatPage() {
       } catch (err) {
         console.log(err);
       }
+    }
+  };
+
+  const msgUpdateHandler = async (messages) => {
+    if (messages) {
+      updateMessages(messages.reverse());
+    } else {
+      updateMessages([]);
     }
   };
 
@@ -77,6 +74,7 @@ function ChatPage() {
       sendHandler={sendHandler}
       msgDeleteHandler={msgDeleteHandler}
       messages={messages}
+      msgUpdateHandler={msgUpdateHandler}
     />
   );
 }

@@ -6,7 +6,7 @@ import Sidebar from "./Sidebar";
 function ChatLayout(props) {
   return (
     <div className={classes.container}>
-      <Sidebar />
+      <Sidebar msgUpdateHandler={props.msgUpdateHandler} />
       <div className={classes.chatWindow}>
         <MessageDock
           messages={props.messages}
