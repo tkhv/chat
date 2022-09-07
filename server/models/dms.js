@@ -7,7 +7,7 @@ const messageSchema = new schema({
     type: String,
     required: true,
   },
-  userID: {
+  username: {
     type: String, //TODO: Change type to ObjectID
     required: true,
   },

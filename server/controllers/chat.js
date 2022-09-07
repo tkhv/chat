@@ -13,19 +13,23 @@ exports.postMessage = async (req, res, next) => {
       function (err, result) {
         result.messages.push(req.body);
         result.markModified("messages");
-        result.save();
+        result.save(function (saveerr, saveresult) {
+          if (!saveerr) {
+            messages = saveresult.messages;
+            res.send(messages[messages.length - 1]);
+          } else {
+            console.log(saveerr.message);
+          }
+        });
       }
     )
       .clone()
       .catch(function (err) {
         console.log(err);
       });
-    if (response) {
-      res.json(response);
-    } else res.json({ added: false });
   } catch (err) {
     console.log(err);
-    res.send({ added: false });
+    res.send({ sent: false });
   }
 };
 
@@ -60,7 +64,7 @@ exports.getDM = async (req, res, next) => {
             { _id: targetUser._id },
             {
               $push: {
-                contacts: { username: originUser.username, dmID: dmID._id },
+                contacts: { username: originUser.username, dmID: dmID.dmID },
               },
             }
           );
@@ -74,7 +78,7 @@ exports.getDM = async (req, res, next) => {
             { _id: req.body.originID },
             {
               $push: {
-                contacts: { username: targetUser.username, dmID: dmID._id },
+                contacts: { username: targetUser.username, dmID: dmID.dmID },
               },
             }
           );
