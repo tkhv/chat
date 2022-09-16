@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from "react";
+import openSocket from "socket.io-client";
 
 import ChatLayout from "../components/chat/ChatLayout";
 import AuthContext from "../context/auth-context";
@@ -6,8 +7,14 @@ import AuthContext from "../context/auth-context";
 function ChatPage() {
   const authCtx = useContext(AuthContext);
   const [messages, updateMessages] = useState([]);
-
   const [isLoading, setLoading] = useState(true);
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    const newSocket = openSocket("http://localhost:3001");
+    setSocket(newSocket);
+    return () => newSocket.close();
+  }, [setSocket]);
 
   useEffect(() => {
     loadContacts();
