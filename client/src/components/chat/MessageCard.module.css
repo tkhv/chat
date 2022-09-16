@@ -3,7 +3,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #157efb;
+
   margin: 6px 12px;
   padding: 7px;
   border-radius: 12px;
@@ -12,7 +12,6 @@
 .metadataRow {
   padding: 2px;
   font-size: 14px;
-  color: white;
   height: 18px;
   width: 100%;
   display: flex;
@@ -22,13 +21,11 @@
 .timestamp {
   padding-left: 10px;
   align-self: center;
-  color: rgba(255, 255, 255, 0.637);
 }
 
 .message {
   padding: 2px;
   font-size: 18px;
-  color: white;
   height: auto;
   width: 100%;
   overflow-wrap: break-word;

@@ -44,6 +44,7 @@ function ChatPage() {
 
   const msgUpdateHandler = async (messages) => {
     if (messages) {
+      console.log(messages);
       updateMessages(messages.reverse());
     } else {
       updateMessages([]);
