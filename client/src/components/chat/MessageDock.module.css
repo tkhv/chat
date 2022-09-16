@@ -1,6 +1,6 @@
 .messageDock {
   overflow-y: auto;
-  border: 3px solid #000000;
+  border: 3px solid #e8e8ea;
   height: 100%;
   display: flex;
   flex-direction: column-reverse;

@@ -57,7 +57,7 @@ function Contacts(props) {
 
   return (
     <div>
-      <MessageBar placeholder="Add user..." sendHandler={searchHandler} />;
+      <MessageBar placeholder="Add user..." sendHandler={searchHandler} />
       {contacts.map((contact) => (
         <UserCard
           contacts={contacts}
